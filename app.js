@@ -21,42 +21,42 @@ gsap.set(decors, {
 
 // 3. On ne fait plus avancer les cartes ou les décors.
 // On fait avancer TOUT LE MONDE vers nous (en modifiant le Z du conteneur .world)
-const profondeurTotale = 8000;
+const profondeurTotale = 8000; 
 
-gsap.to(".world", {
-  z: profondeurTotale, // On avance de 8000
-  ease: "none",
-  scrollTrigger: {
-    trigger: "body",
-    start: "top top",
-    end: "bottom bottom",
-    scrub: 1,
+// 1. On crée une fonction indépendante pour notre radar
+function gererVisibilite(progress) {
+    const avancementCamera = progress * profondeurTotale;
 
-    // LE FAMEUX RADAR : S'exécute en continu pendant le scroll
-    onUpdate: (self) => {
-      // self.progress est un chiffre entre 0 (début) et 1 (fin du scroll)
-      const avancementCamera = self.progress * profondeurTotale;
-
-      cards.forEach((card) => {
-        // On récupère la position Z de la carte dans le HTML
+    cards.forEach(card => {
         const positionCarte = parseFloat(card.dataset.z) || 0;
-
-        // La distance réelle entre la caméra et la carte
         const distance = positionCarte + avancementCamera;
 
-        // ZONE DE VISIBILITÉ :
-        // Si la carte est entre -2500px (loin devant) et 300px (juste derrière la tête)
-        if (distance > -1500 && distance < 500) {
-          card.style.opacity = 1; // Apparaît !
-          card.style.pointerEvents = "auto"; // Rend cliquable
+        if (distance > -2500 && distance < 300) {
+            card.style.opacity = 1;
+            card.style.pointerEvents = "auto";
         } else {
-          card.style.opacity = 0; // Disparaît !
-          card.style.pointerEvents = "none"; // Empêche de cliquer dans le vide
+            card.style.opacity = 0;
+            card.style.pointerEvents = "none";
         }
-      });
-    },
-  },
+    });
+}
+
+// 2. On configure le ScrollTrigger pour qu'il utilise cette fonction
+gsap.to(".world", {
+    z: profondeurTotale,
+    ease: "none",
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        // À chaque scroll, on envoie l'avancement (entre 0 et 1) au radar
+        onUpdate: (self) => gererVisibilite(self.progress)
+    }
 });
+
+// 3. LA CORRECTION : On lance le radar manuellement au chargement (avancement = 0)
+gererVisibilite(0);
 
 window.addEventListener("mousemove", (event) => {
   const x = (event.clientX / window.innerWidth - 0.5) * 2;
