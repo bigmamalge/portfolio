@@ -46,7 +46,7 @@ gsap.to(".world", {
 
         // ZONE DE VISIBILITÉ :
         // Si la carte est entre -2500px (loin devant) et 300px (juste derrière la tête)
-        if (distance > -500 && distance < 500) {
+        if (distance > -1500 && distance < 500) {
           card.style.opacity = 1; // Apparaît !
           card.style.pointerEvents = "auto"; // Rend cliquable
         } else {
