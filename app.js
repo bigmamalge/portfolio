@@ -116,7 +116,7 @@ function relierElements(el1, el2) {
     ligne.style.transform = `translate3d(${x1}px, ${y1}px, ${z1}px) rotate3d(0, ${axisY}, ${axisZ}, ${angle}deg)`;
 
     // 5. On l'ajoute au monde
-    document.querySelector('.world').appendChild(ligne);
+    document.querySelector('.world').prepend(ligne); // prepend = ajoute au début au lieu de la fin
 }
 
 

@@ -79,10 +79,17 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    
-    /* Optionnel : pour que le texte soit joli et visible */
     color: white;
     font-weight: bold;
-    font-size: 1.5rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    
+    /* --- LE BOUCLIER QUI CACHE LA LIGNE --- */
+    background-color: #0a0a0a; /* Même couleur que ton body */
+    padding: 8px 20px;
+    border-radius: 30px; /* Donne une forme de pilule arrondie */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Un petit contour stylé */
+    
+    /* On recule le point de départ pour recentrer la pilule */
+    margin-top: -20px;
+    margin-left: -40px; 
 }
