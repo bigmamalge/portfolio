@@ -70,3 +70,75 @@ window.addEventListener("mousemove", (event) => {
     duration: 1,
   });
 });
+
+function relierElements(el1, el2) {
+    const x1 = parseFloat(el1.dataset.x) || 0;
+    const y1 = parseFloat(el1.dataset.y) || 0;
+    const z1 = parseFloat(el1.dataset.z) || 0;
+
+    const x2 = parseFloat(el2.dataset.x) || 0;
+    const y2 = parseFloat(el2.dataset.y) || 0;
+    const z2 = parseFloat(el2.dataset.z) || 0;
+
+    // 1. Calcul des distances
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const dz = z2 - z1;
+    
+    // Longueur exacte du trait
+    const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+    // 2. MATHÉMATIQUES VECTORIELLES (Produit vectoriel pour trouver l'axe 3D parfait)
+    let axisY = -dz;
+    let axisZ = dy;
+    let axisLength = Math.sqrt(axisY * axisY + axisZ * axisZ);
+    
+    let angle;
+    if (axisLength === 0) {
+        // Cas particulier : si la ligne est parfaitement droite sur l'axe X
+        axisY = 1;
+        axisZ = 0;
+        angle = (dx < 0) ? 180 : 0;
+    } else {
+        // On normalise l'axe
+        axisY = axisY / axisLength;
+        axisZ = axisZ / axisLength;
+        // On calcule l'angle en degrés
+        angle = Math.acos(dx / distance) * (180 / Math.PI);
+    }
+
+    // 3. Création du trait HTML
+    const ligne = document.createElement('div');
+    ligne.className = 'line';
+    ligne.style.width = distance + 'px';
+    
+    // 4. On utilise rotate3d : 0 pour X, puis axisY, axisZ, et l'angle
+    ligne.style.transform = `translate3d(${x1}px, ${y1}px, ${z1}px) rotate3d(0, ${axisY}, ${axisZ}, ${angle}deg)`;
+
+    // 5. On l'ajoute au monde
+    document.querySelector('.world').appendChild(ligne);
+}
+
+
+// --- CRÉATION DES LIGNES ENTRE LES DÉCORS ---
+
+// On demande au JS de lire tes instructions HTML (le fameux data-connect-to)
+decors.forEach(decor => {
+    // On regarde si tu as mis un attribut "data-connect-to" sur cet élément
+    const cibles = decor.dataset.connectTo; 
+    
+    if (cibles) {
+        // S'il y a plusieurs cibles (séparées par des virgules), on les découpe
+        const listeIdCibles = cibles.split(','); 
+        
+        listeIdCibles.forEach(idCible => {
+            // On cherche l'élément cible dans la page
+            const elementCible = document.getElementById(idCible.trim()); 
+            
+            // Si on a bien trouvé la cible, on tire le trait !
+            if (elementCible) {
+                relierElements(decor, elementCible);
+            }
+        });
+    }
+});

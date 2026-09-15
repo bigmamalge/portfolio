@@ -58,3 +58,31 @@ body {
     height: 100%;
     transform-style: preserve-3d; /* On passe la 3D aux enfants */
 }
+.line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.4); /* Trait semi-transparent */
+    
+    /* LE SECRET DE LA ROTATION : pivote depuis l'extrémité gauche */
+    transform-origin: left center; 
+    
+    /* Pour que la souris passe à travers sans bloquer les clics */
+    pointer-events: none; 
+    
+    /* Optionnel : un petit effet lumineux */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+}
+
+.decor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    /* Optionnel : pour que le texte soit joli et visible */
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
