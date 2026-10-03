@@ -1,0 +1,98 @@
+/* --- BASE DU SITE --- */
+body {
+    margin: 0;
+    padding: 40px 20px;
+    background-color: #f8eee7; /* Fond beige */
+    color: #31180f; /* Texte foncé */
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* --- TYPOGRAPHIE DES TITRES --- */
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #a36b46; /* Marron clair/orange de la charte */
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f8eee7; /* Petite ligne séparatrice */
+}
+
+/* --- LE CADRE PRINCIPAL (Style Card de la 3D adapté en 2D) --- */
+.cv-container {
+    background-color: #ffffff;
+    border: 3px solid #31180f;
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(49, 24, 15, 0.08); /* Légère ombre pour détacher du fond */
+    box-sizing: border-box;
+}
+
+/* --- LA VIDÉO --- */
+.video-section {
+    width: 100%;
+    border: 2px solid #a36b46;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    background-color: #000; /* Sécurité si la vidéo ne remplit pas tout */
+}
+
+video {
+    width: 100%;
+    display: block; /* Supprime l'espace vide par défaut sous les vidéos HTML */
+}
+
+/* --- LE SCRIPT --- */
+.texte-script p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* --- BOUTON DE RETOUR --- */
+.btn-retour {
+    background-color: transparent;
+    color: #a36b46;
+    border: 2px solid #a36b46;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-retour:hover {
+    background-color: #a36b46;
+    color: #ffffff;
+}
+
+iframe {
+    width: 100%;
+    /* L'astuce moderne pour garder le format 16:9 parfait peu importe la taille de l'écran */
+    aspect-ratio: 16 / 9; 
+    display: block;
+}
