@@ -96,3 +96,17 @@ iframe {
     aspect-ratio: 16 / 9; 
     display: block;
 }
+
+.email-cliquable {
+    color: #a36b46;
+    font-weight: 700;
+    cursor: pointer; /* Fait apparaître la petite main */
+    text-decoration: underline;
+    text-decoration-style: dashed; /* Souligné en pointillés */
+    text-underline-offset: 4px; /* Décolle un peu le trait du texte */
+    transition: color 0.3s ease;
+}
+
+.email-cliquable:hover {
+    color: #31180f; /* Devient plus foncé au survol */
+}

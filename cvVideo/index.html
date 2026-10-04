@@ -18,7 +18,7 @@
         <!-- Section Vidéo -->
         <section class="video-section">
             <iframe 
-                src="https://www.youtube.com/embed/aqz-KE-bpKQ" 
+                src="https://www.youtube.com/embed/pEYBWdax49A?si=mfA8n6uM9tzLwZqa" 
                 title="CV Vidéo Malone Daulny" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -31,14 +31,72 @@
             <h2>Script de la présentation</h2>
             <div class="texte-script">
                 <p>
-                    Bonjour, je m'appelle Malone Daulny et je suis développeur...
+                    Bonjour ! Je m'appelle Malone Daulny, 
+                    j'ai 19 ans et je suis actuellement en deuxième année de BUT Informatique à l'IUT de Laval. 
+                    Si je réalise cette vidéo aujourd'hui, c'est pour vous présenter mon profil et décrocher mon 
+                    futur stage de développeur informatique, pour une durée de 2 à 3 mois, d'avril à juin 2027.
                 </p>
                 <p>
-                    (Remplace ce texte par le véritable script de ta vidéo. Utilise des balises &lt;p&gt; pour séparer tes paragraphes proprement).
+                    Pour moi, le développement n'est pas qu'une question de lignes de code : c'est avant tout un 
+                    moyen de créer des solutions concrètes. Mon but est de proposer des outils qui ont un véritable impact.
                 </p>
+                <p>
+                    Cette volonté de créer des applications performantes, je l'applique au quotidien dans ma formation.
+                     Si j'ai acquis de bonnes bases en développement Front-end, mon véritable domaine de prédilection,
+                      c'est le Back-end. Qu'il s'agisse de développer en Java ou PHP, de créer des API REST, ou encore
+                       de concevoir et d'exploiter des bases de données complexes... ce que j'aime, c'est construire
+                        l'architecture et la logique robuste qui font tourner un projet.
+                </p>
+                <p>
+                    Cet attrait pour le concret ne s'arrête d'ailleurs pas aux portes de l'IUT. 
+                    Chez moi, je suis un véritable touche-à-tout. J'adore concevoir des choses de mes propres mains
+                    et donner vie à mes idées, notamment à travers l'impression 3D ou en réalisant des montages
+                    électroniques avec Arduino. J'ai d'ailleurs pu lier ces passions à l'informatique en participant
+                    à la création et à la programmation d'une imprimante braille en C++. J'aime comprendre le
+                    fonctionnement des systèmes en profondeur, du matériel jusqu'au logiciel.
+                </p>
+                <p>
+                    Ce côté pragmatique et bidouilleur, je l'ai structuré sur le terrain. Mon expérience
+                    professionnelle en milieu industriel m'a appris la rigueur, le respect des processus et 
+                    l'importance cruciale du travail en équipe. De nature curieuse et autonome, je suis 
+                    quelqu'un de très investi et toujours force de proposition au quotidien.
+                </p>
+                <p>
+                    En résumé, je recherche un stage en développement informatique, idéalement orienté 
+                    Back-end, d'avril à juin 2027. Si vous cherchez un profil technique, curieux et 
+                    capable de s'intégrer rapidement à vos équipes pour relever vos défis de digitalisation 
+                    ou de développement logiciel, nous sommes faits pour nous entendre. N'hésitez pas 
+                    à me contacter directement par mail a <span class="email-cliquable" id="mon-email">DaulnyMalone1@gmail.com</span>. 
+                    
+                </p>
+                <p> 
+                    À très bientôt !
+                </p>
+                
             </div>
         </section>
     </main>
 
+    <script>
+        const emailTexte = document.getElementById('mon-email');
+
+        emailTexte.addEventListener('click', () => {
+            const monEmail = 'DaulnyMalone1@gmail.com'; 
+
+            navigator.clipboard.writeText(monEmail).then(() => {
+                
+                const texteOriginal = emailTexte.innerText;
+                emailTexte.innerText = "✅ Copié !";
+                emailTexte.style.color = "#31180f";
+                emailTexte.style.textDecoration = "none";
+
+                setTimeout(() => {
+                    emailTexte.innerText = texteOriginal;
+                    emailTexte.style.color = ""; 
+                    emailTexte.style.textDecoration = ""; 
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>
